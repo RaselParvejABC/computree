@@ -4783,6 +4783,7 @@ __metadata:
     autoprefixer: ^10.4.12
     browserify-zlib: ^0.2.0
     buffer: ^6.0.3
+    email-validator: ^2.0.4
     eslint: ^8.26.0
     eslint-config-react-app: ^7.0.1
     events: ^3.3.0
@@ -6514,6 +6515,13 @@ __metadata:
   version: 1.4.284
   resolution: "electron-to-chromium@npm:1.4.284"
   checksum: be496e9dca6509dbdbb54dc32146fc99f8eb716d28a7ee8ccd3eba0066561df36fc51418d8bd7cf5a5891810bf56c0def3418e74248f51ea4a843d423603d10a
+  languageName: node
+  linkType: hard
+
+"email-validator@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "email-validator@npm:2.0.4"
+  checksum: e702fee24e1b9efb7e6a84abb309bebdb4ddde137fdb99a61e24bd82ac0b605be34e191b1c4d04fbc855be7b94cad967f932a456c0def2240303881f4e388f2d
   languageName: node
   linkType: hard
 

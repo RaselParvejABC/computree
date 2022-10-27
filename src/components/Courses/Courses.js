@@ -15,17 +15,17 @@ const Courses = () => {
   const courses = useLoaderData();
   return (
     <>
-      <Typography variant="h3" className="font-bold text-2xl text-center mb-3">
+      <Typography variant="h3" className="font-bold text-2xl text-center my-3">
         Our Courses
       </Typography>
       <div className="container mx-auto p-5 grid grid-cols-3 gap-3">
-        <Card className="col-span-3 md:col-span-1">
+        <Card className="col-span-3 md:col-span-1 p-5">
           <CardBody>
             <aside className="flex gap-1 flex-col">
               {courses.map((course) => (
                 <MyNavLink to={`course/${course["id"]}`} key={course["id"]}>
                   <Chip
-                    className="bg-blue-500 px-3 mb-3 block"
+                    className="bg-blue-500 px-3 mb-3"
                     color="blue"
                     value={course["title"]}
                   />

@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             index: true,
             element: (
               <Alert className="bg-white text-black text-2xl mx-auto mt-5 text-center">
-                Select a Course to see Details.
+                Select a Course from Left/Above to see Details.
               </Alert>
             ),
           },

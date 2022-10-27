@@ -44,6 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:10.4.12"],\
             ["browserify-zlib", "npm:0.2.0"],\
             ["buffer", "npm:6.0.3"],\
+            ["email-validator", "npm:2.0.4"],\
             ["eslint", "npm:8.26.0"],\
             ["eslint-config-react-app", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:7.0.1"],\
             ["events", "npm:3.3.0"],\
@@ -7449,6 +7450,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:10.4.12"],\
             ["browserify-zlib", "npm:0.2.0"],\
             ["buffer", "npm:6.0.3"],\
+            ["email-validator", "npm:2.0.4"],\
             ["eslint", "npm:8.26.0"],\
             ["eslint-config-react-app", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:7.0.1"],\
             ["events", "npm:3.3.0"],\
@@ -9675,6 +9677,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/electron-to-chromium-npm-1.4.284-2fb881a7ac-be496e9dca.zip/node_modules/electron-to-chromium/",\
           "packageDependencies": [\
             ["electron-to-chromium", "npm:1.4.284"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["email-validator", [\
+        ["npm:2.0.4", {\
+          "packageLocation": "./.yarn/cache/email-validator-npm-2.0.4-ac07d6a6c7-e702fee24e.zip/node_modules/email-validator/",\
+          "packageDependencies": [\
+            ["email-validator", "npm:2.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\

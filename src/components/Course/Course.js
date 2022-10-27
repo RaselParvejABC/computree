@@ -36,8 +36,11 @@ const Course = () => {
               content="Download Course Description as PDF"
               className="bg-blue-500"
             >
-              <IconButton onClick={() => setIsDownloadingPDF(true)}>
-                <MdPictureAsPdf />
+              <IconButton
+                variant="outlined"
+                onClick={() => setIsDownloadingPDF(true)}
+              >
+                <MdPictureAsPdf className="inline text-green-500 text-2xl" />
               </IconButton>
             </Tooltip>
           )}

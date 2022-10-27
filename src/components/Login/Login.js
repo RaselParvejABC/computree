@@ -1,15 +1,42 @@
-import React, { useState } from "react";
-import { Input, Typography } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import {
+  useSignInWithEmailAndPassword,
+  useAuthState,
+} from "react-firebase-hooks/auth";
+
+import { FirebaseAuthContext } from "../../contexts/FirebaseAuthContextProvider/FirebaseAuthContextProvider";
 
 const Login = () => {
-  const [email, setEmail] = useState("alu");
+  const { firebaseAuth } = useContext(FirebaseAuthContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(FirebaseAuthContext);
+
+  const [currentUser, currentUserLoading, currentUserLoadingError] =
+    useAuthState(firebaseAuth);
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  if (currentUserLoading) {
+    return null;
+  }
+
+  if (currentUserLoadingError) {
+    throw currentUserLoadingError;
+  }
+
+  if (currentUser) {
+    return <Navigate to={from} replace />;
+  }
+
   const handleSubmission = (event) => {
     event.preventDefault();
     return true;
   };
-  console.log(email);
+
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -27,6 +54,8 @@ const Login = () => {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
                   type="email"
                   name="email"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -42,6 +71,8 @@ const Login = () => {
               </label>
               <div className="flex flex-col items-start">
                 <input
+                  onChange={(event) => setPassword(event.target.value)}
+                  value={password}
                   type="password"
                   name="password"
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -90,7 +121,6 @@ const Login = () => {
             </button>
             <button
               aria-label="Login with GitHub"
-              role="button"
               className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
             >
               <svg
