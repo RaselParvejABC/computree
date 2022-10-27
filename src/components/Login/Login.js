@@ -4,6 +4,7 @@ import {
   useSignInWithEmailAndPassword,
   useAuthState,
 } from "react-firebase-hooks/auth";
+import * as EmailValidator from "email-validator";
 
 import { FirebaseAuthContext } from "../../contexts/FirebaseAuthContextProvider/FirebaseAuthContextProvider";
 
@@ -11,8 +12,9 @@ const Login = () => {
   const { firebaseAuth } = useContext(FirebaseAuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(FirebaseAuthContext);
+  const [error, setError] = useState(null);
+  const [signInWithEmailAndPassword, , loading, firebaseError] =
+    useSignInWithEmailAndPassword(firebaseAuth);
 
   const [currentUser, currentUserLoading, currentUserLoadingError] =
     useAuthState(firebaseAuth);
@@ -34,7 +36,12 @@ const Login = () => {
 
   const handleSubmission = (event) => {
     event.preventDefault();
-    return true;
+    setError(null);
+    if (!EmailValidator.validate(email)) {
+      setError("Email Format Incorrect!");
+      return;
+    }
+    signInWithEmailAndPassword(email, password);
   };
 
   return (
@@ -86,11 +93,26 @@ const Login = () => {
               Forget Password?
             </Link>
             <div className="flex items-center mt-4">
-              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+              <button
+                onClick={handleSubmission}
+                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+              >
                 Log In
               </button>
             </div>
           </form>
+
+          {(error || firebaseError) && (
+            <div className="mt-4 text-center text-red-500">
+              {error || firebaseError.message}
+            </div>
+          )}
+
+          {loading && (
+            <div className="mt-4 text-center text-blue-500">
+              Trying to Log In.
+            </div>
+          )}
           <div className="mt-4 text-grey-600">
             Want to Register a Password Account with your Email?{" "}
             <span>

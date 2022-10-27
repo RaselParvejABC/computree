@@ -5,7 +5,6 @@ import {
   useCreateUserWithEmailAndPassword,
   useAuthState,
 } from "react-firebase-hooks/auth";
-import { SpinnerCircular } from "spinners-react";
 import { FirebaseAuthContext } from "../../contexts/FirebaseAuthContextProvider/FirebaseAuthContextProvider";
 
 const Register = () => {
@@ -17,7 +16,7 @@ const Register = () => {
   const [passwordConfirmed, setPasswordConfirmed] = useState("");
   const [error, setError] = useState(null);
 
-  const [createUserWithEmailAndPassword, user, loading, firebaseError] =
+  const [createUserWithEmailAndPassword,, loading, firebaseError] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
 
   const [currentUser, currentUserLoading, currentUserLoadingError] =
