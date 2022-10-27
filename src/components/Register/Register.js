@@ -16,6 +16,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirmed, setPasswordConfirmed] = useState("");
   const [error, setError] = useState(null);
+  const [profileUpdated, setProfileUpdated] = useState(false);
+  const [profileNeedsUpdate, setProfileNeedsUpdate] = useState(false);
 
   const [createUserWithEmailAndPassword, , loading, firebaseError] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
@@ -37,12 +39,16 @@ const Register = () => {
   }
 
   if (currentUser) {
-    return <Navigate to={from} replace />;
+    if (!profileNeedsUpdate || profileUpdated) {
+      return <Navigate to={from} replace />;
+    }
+    return null;
   }
 
   const handleSubmission = (event) => {
     event.preventDefault();
     setError(null);
+    setProfileNeedsUpdate(true);
     if (password !== passwordConfirmed) {
       setError("Passwords don't Match");
       return;
@@ -65,7 +71,9 @@ const Register = () => {
     }
     createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        updateProfile({ photoURL, displayName: name });
+        updateProfile({ photoURL, displayName: name }).then(() => {
+          setProfileUpdated(true);
+        });
       })
       .catch();
   };
