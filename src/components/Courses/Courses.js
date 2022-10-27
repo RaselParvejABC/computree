@@ -1,12 +1,6 @@
 import React from "react";
 import { useLoaderData, Outlet } from "react-router-dom";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Chip,
-} from "@material-tailwind/react";
+import { Card, CardBody, Typography, Chip } from "@material-tailwind/react";
 import MyNavLink from "../MyNavBar/MyNavLink";
 
 export async function loader() {

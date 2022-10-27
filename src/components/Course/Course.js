@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import {
   Typography,
   IconButton,
   Tooltip,
   Button,
+  Alert,
 } from "@material-tailwind/react";
-import { MdPictureAsPdf } from "react-icons/md";
+import { MdPictureAsPdf, MdDownload } from "react-icons/md";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import CourseAsPDF from "../CourseAsPDF/CourseAsPDF";
+import { SpinnerRoundFilled } from "spinners-react";
 
 export async function loader({ params }) {
   const response = await fetch(
@@ -18,6 +22,7 @@ export async function loader({ params }) {
 
 const Course = () => {
   const course = useLoaderData();
+  const [isDownloadingPDF, setIsDownloadingPDF] = useState(false);
   return (
     <div className="p-5">
       <Typography
@@ -25,14 +30,37 @@ const Course = () => {
         className="bg-white text-black text-2xl mx-auto mt-5 text-center font-bold"
       >
         {course["title"] + " "}
-        <Tooltip
-          content="Download Course Description as PDF"
-          className="bg-blue-500"
-        >
-          <IconButton>
-            <MdPictureAsPdf />
-          </IconButton>
-        </Tooltip>
+        {isDownloadingPDF || (
+          <Tooltip
+            content="Download Course Description as PDF"
+            className="bg-blue-500"
+          >
+            <IconButton onClick={() => setIsDownloadingPDF(true)}>
+              <MdPictureAsPdf />
+            </IconButton>
+          </Tooltip>
+        )}
+
+        {isDownloadingPDF && (
+          <PDFDownloadLink
+            document={<CourseAsPDF course={course} />}
+            fileName={course["title"]}
+          >
+            {({ blob, url, loading, error }) => {
+              if (error) {
+                return (
+                  <Alert className="bg-red-900 text-white inline-block font-normal text-sm">
+                    Something went wrong! Reload!
+                  </Alert>
+                );
+              }
+              if (loading) {
+                return <SpinnerRoundFilled size="50" className="inline" />;
+              }
+              return <MdDownload className="inline text-blue-900" />;
+            }}
+          </PDFDownloadLink>
+        )}
       </Typography>
       <img
         src={course["banner"]}
