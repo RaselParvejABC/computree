@@ -20,34 +20,31 @@ export async function loader() {
 const Courses = () => {
   const courses = useLoaderData();
   return (
-    <div className="container mx-auto p-5 grid grid-cols-3 gap-2">
-      <aside className="col-span-3 md:col-span-1 flex gap-2 flex-col">
-        <Card>
-          <CardHeader>
-            <Typography
-              variant="h3"
-              className="font-bold text-2xl text-center mb-3"
-            >
-              Our Courses
-            </Typography>
-          </CardHeader>
+    <>
+      <Typography variant="h3" className="font-bold text-2xl text-center mb-3">
+        Our Courses
+      </Typography>
+      <div className="container mx-auto p-5 grid grid-cols-3 gap-3">
+        <Card className="col-span-3 md:col-span-1">
           <CardBody>
-            {courses.map((course) => (
-              <MyNavLink to={`course/${course["id"]}`} key={course["id"]}>
-                <Chip
-                  className="bg-blue-500 px-3 mt-3"
-                  color="blue"
-                  value={course["title"]}
-                />
-              </MyNavLink>
-            ))}
+            <aside className="flex gap-2 flex-col">
+              {courses.map((course) => (
+                <MyNavLink to={`course/${course["id"]}`} key={course["id"]}>
+                  <Chip
+                    className="bg-blue-500 px-3 mb-3"
+                    color="blue"
+                    value={course["title"]}
+                  />
+                </MyNavLink>
+              ))}
+            </aside>
           </CardBody>
         </Card>
-      </aside>
-      <main className="col-span-3 md:col-span-2">
-        <Outlet />
-      </main>
-    </div>
+        <main className="col-span-3 md:col-span-2 border-2 border-blue-500/100 rounded-lg">
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 };
 
