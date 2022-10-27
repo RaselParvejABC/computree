@@ -44,6 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.18"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:18.2.0"],\
+            ["react-firebase-hooks", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.3"],\
             ["react-router-dom", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:6.4.2"],\
             ["react-scripts", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.1"],\
             ["tailwindcss", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:3.2.1"],\
@@ -7106,6 +7107,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:8.4.18"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:18.2.0"],\
+            ["react-firebase-hooks", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.3"],\
             ["react-router-dom", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:6.4.2"],\
             ["react-scripts", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.1"],\
             ["tailwindcss", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:3.2.1"],\
@@ -16169,6 +16171,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-error-overlay-npm-6.0.11-021cdeaa92-ce7b44c38f.zip/node_modules/react-error-overlay/",\
           "packageDependencies": [\
             ["react-error-overlay", "npm:6.0.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-firebase-hooks", [\
+        ["npm:5.0.3", {\
+          "packageLocation": "./.yarn/cache/react-firebase-hooks-npm-5.0.3-ca50207645-80e704f183.zip/node_modules/react-firebase-hooks/",\
+          "packageDependencies": [\
+            ["react-firebase-hooks", "npm:5.0.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-firebase-hooks-virtual-e1568797cf/0/cache/react-firebase-hooks-npm-5.0.3-ca50207645-80e704f183.zip/node_modules/react-firebase-hooks/",\
+          "packageDependencies": [\
+            ["react-firebase-hooks", "virtual:43e577395dad64ef280645336c847be90e1fd14d3cbb59fa50d9729cf161878a48cb8c0e3eb695f50eafb045f39b68513c2b416854cb2ff2c5689989a5bb01e5#npm:5.0.3"],\
+            ["@types/firebase", null],\
+            ["@types/react", null],\
+            ["firebase", "npm:9.12.1"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/firebase",\
+            "@types/react",\
+            "firebase",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
