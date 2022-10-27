@@ -62,9 +62,9 @@ export default function MyNavBar() {
           variant="h2"
           className="cursor-pointer py-1.5 font-bold flex-1 align-middle"
         >
-          <Link to="/">
+          <Link to="/" className="flex items-center">
             <img src={Logo} alt="Logo" className="max-w-[5%] inline mr-2" />
-            <Typography as="span" variant="h2">
+            <Typography as="span" variant="h2" className="text-2xl">
               CompuTree
             </Typography>
           </Link>

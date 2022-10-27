@@ -8,6 +8,9 @@ import FAQ from "./components/FAQ/FAQ";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Purchase from "./components/Purchase/Purchase";
+import Courses, { loader as coursesLoader } from "./components/Courses/Courses";
+import { Alert } from "@material-tailwind/react";
+import Course, { loader as CourseLoader } from "./components/Course/Course";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,26 @@ const router = createBrowserRouter([
       {
         path: "/purchase",
         element: <Purchase />,
+      },
+      {
+        path: "/courses",
+        element: <Courses />,
+        loader: coursesLoader,
+        children: [
+          {
+            index: true,
+            element: (
+              <Alert className="bg-white text-black text-2xl mx-auto mt-5 text-center">
+                Select a Course to see Details.
+              </Alert>
+            ),
+          },
+          {
+            path: "course/:courseID",
+            loader: CourseLoader,
+            element: <Course />,
+          },
+        ],
       },
     ],
   },
