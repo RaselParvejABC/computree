@@ -1,5 +1,12 @@
-function App() {
-  return <h1 className="text-3xl font-bold">Hello world!</h1>;
-}
+import React from "react";
+import MyNavBar from "./components/MyNavBar/MyNavBar";
+
+const App = () => {
+  return (
+    <>
+      <MyNavBar />
+    </>
+  );
+};
 
 export default App;
