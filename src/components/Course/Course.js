@@ -1,6 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { Typography, IconButton, Tooltip } from "@material-tailwind/react";
+import {
+  Typography,
+  IconButton,
+  Tooltip,
+  Button,
+} from "@material-tailwind/react";
 import { MdPictureAsPdf } from "react-icons/md";
 
 export async function loader({ params }) {
@@ -14,7 +19,7 @@ export async function loader({ params }) {
 const Course = () => {
   const course = useLoaderData();
   return (
-    <div>
+    <div className="p-5">
       <Typography
         as="h2"
         className="bg-white text-black text-2xl mx-auto mt-5 text-center font-bold"
@@ -29,6 +34,19 @@ const Course = () => {
           </IconButton>
         </Tooltip>
       </Typography>
+      <img
+        src={course["banner"]}
+        alt="Course Banner"
+        className="max-h-[200px] my-3 block mx-auto"
+      />
+      {course["preamble"].map((paragraph) => (
+        <Typography as="p" variant="paragraph" className="justify-self-start">
+          {paragraph}
+        </Typography>
+      ))}
+      <div className="text-center">
+        <Button className="mt-3 p-3 mx-auto">Purchase this Course</Button>
+      </div>
     </div>
   );
 };

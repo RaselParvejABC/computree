@@ -27,7 +27,7 @@ const Courses = () => {
       <div className="container mx-auto p-5 grid grid-cols-3 gap-3">
         <Card className="col-span-3 md:col-span-1">
           <CardBody>
-            <aside className="flex gap-2 flex-col">
+            <aside className="flex gap-1 flex-col">
               {courses.map((course) => (
                 <MyNavLink to={`course/${course["id"]}`} key={course["id"]}>
                   <Chip
