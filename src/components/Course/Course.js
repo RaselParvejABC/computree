@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import {
   Typography,
   IconButton,
@@ -83,7 +83,9 @@ const Course = () => {
         </Typography>
       ))}
       <div className="text-center">
-        <Button className="mt-3 p-3 mx-auto">Purchase this Course</Button>
+        <Link to={`/purchase/${course["id"]}`}>
+          <Button className="mt-3 p-3 mx-auto">Purchase this Course</Button>
+        </Link>
       </div>
     </div>
   );

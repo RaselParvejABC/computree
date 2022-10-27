@@ -39,8 +39,6 @@ const UserPicOrLogin = () => {
 
   const { photoURL, displayName } = user;
 
-  console.log(photoURL);
-
   return (
     <div className="ml-2">
       <Tooltip content={displayName} className="bg-blue-900 text-white">

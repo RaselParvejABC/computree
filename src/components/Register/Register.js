@@ -4,6 +4,7 @@ import * as EmailValidator from "email-validator";
 import {
   useCreateUserWithEmailAndPassword,
   useAuthState,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { FirebaseAuthContext } from "../../contexts/FirebaseAuthContextProvider/FirebaseAuthContextProvider";
 
@@ -16,8 +17,10 @@ const Register = () => {
   const [passwordConfirmed, setPasswordConfirmed] = useState("");
   const [error, setError] = useState(null);
 
-  const [createUserWithEmailAndPassword,, loading, firebaseError] =
+  const [createUserWithEmailAndPassword, , loading, firebaseError] =
     useCreateUserWithEmailAndPassword(firebaseAuth);
+
+  const [updateProfile] = useUpdateProfile(firebaseAuth);
 
   const [currentUser, currentUserLoading, currentUserLoadingError] =
     useAuthState(firebaseAuth);
@@ -60,7 +63,11 @@ const Register = () => {
       setError("Password needs to be at least 6 Characters!");
       return;
     }
-    createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        updateProfile({ photoURL, displayName: name });
+      })
+      .catch();
   };
 
   return (

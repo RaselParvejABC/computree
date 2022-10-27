@@ -7,10 +7,10 @@ import Blog from "./components/Blog/Blog";
 import FAQ from "./components/FAQ/FAQ";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import Purchase from "./components/Purchase/Purchase";
 import Courses, { loader as coursesLoader } from "./components/Courses/Courses";
 import { Alert } from "@material-tailwind/react";
-import Course, { loader as CourseLoader } from "./components/Course/Course";
+import Course, { loader as courseLoader } from "./components/Course/Course";
+import PurchaseRouteProtector from "./components/Purchase/PurchaseRouteProtector";
 
 const router = createBrowserRouter([
   {
@@ -39,8 +39,9 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/purchase",
-        element: <Purchase />,
+        path: "/purchase/:courseID",
+        loader: courseLoader,
+        element: <PurchaseRouteProtector />,
       },
       {
         path: "/courses",
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
           },
           {
             path: "course/:courseID",
-            loader: CourseLoader,
+            loader: courseLoader,
             element: <Course />,
           },
         ],
