@@ -29,46 +29,53 @@ const Course = () => {
         as="h2"
         className="bg-white text-black text-2xl mx-auto mt-5 text-center font-bold"
       >
-        {course["title"] + " "}
-        {isDownloadingPDF || (
-          <Tooltip
-            content="Download Course Description as PDF"
-            className="bg-blue-500"
-          >
-            <IconButton onClick={() => setIsDownloadingPDF(true)}>
-              <MdPictureAsPdf />
-            </IconButton>
-          </Tooltip>
-        )}
+        <div>
+          {course["title"] + " "}
+          {isDownloadingPDF || (
+            <Tooltip
+              content="Download Course Description as PDF"
+              className="bg-blue-500"
+            >
+              <IconButton onClick={() => setIsDownloadingPDF(true)}>
+                <MdPictureAsPdf />
+              </IconButton>
+            </Tooltip>
+          )}
 
-        {isDownloadingPDF && (
-          <PDFDownloadLink
-            document={<CourseAsPDF course={course} />}
-            fileName={course["title"]}
-          >
-            {({ blob, url, loading, error }) => {
-              if (error) {
-                return (
-                  <Alert className="bg-red-900 text-white inline-block font-normal text-sm">
-                    Something went wrong! Reload!
-                  </Alert>
-                );
-              }
-              if (loading) {
-                return <SpinnerRoundFilled size="50" className="inline" />;
-              }
-              return <MdDownload className="inline text-blue-900" />;
-            }}
-          </PDFDownloadLink>
-        )}
+          {isDownloadingPDF && (
+            <PDFDownloadLink
+              document={<CourseAsPDF course={course} />}
+              fileName={course["title"]}
+            >
+              {({ blob, url, loading, error }) => {
+                if (error) {
+                  return (
+                    <Alert className="bg-red-900 text-white inline-block font-normal text-sm">
+                      Something went wrong! Reload!
+                    </Alert>
+                  );
+                }
+                if (loading) {
+                  return <SpinnerRoundFilled size="50" className="inline" />;
+                }
+                return <MdDownload className="inline text-blue-900" />;
+              }}
+            </PDFDownloadLink>
+          )}
+        </div>
       </Typography>
       <img
         src={course["banner"]}
         alt="Course Banner"
         className="max-h-[200px] my-3 block mx-auto"
       />
-      {course["preamble"].map((paragraph) => (
-        <Typography as="p" variant="paragraph" className="justify-self-start">
+      {course["preamble"].map((paragraph, index) => (
+        <Typography
+          key={index}
+          as="p"
+          variant="paragraph"
+          className="justify-self-start"
+        >
           {paragraph}
         </Typography>
       ))}

@@ -20,12 +20,14 @@ const styles = StyleSheet.create({
   },
   title: {
     display: "block",
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },
   text: {
     display: "block",
+    textAlign: "justify",
+    fontSize: 13,
   },
   image: {
     maxHeight: 200,
@@ -42,11 +44,13 @@ const CourseAsPDF = ({ course }) => {
           <Text style={styles.title}>{course["title"]}</Text>
         </View>
         <View style={styles.view}>
-          <Image style={styles.image} src={course["banner"]} />
+          <Image src={course["banner"]} />
         </View>
         <View style={styles.view}>
-          {course["preamble"].map((paragraph) => (
-            <Text style={styles.text}>paragraph</Text>
+          {course["preamble"].map((paragraph, index) => (
+            <Text key={index} style={styles.text}>
+              {paragraph}
+            </Text>
           ))}
         </View>
       </Page>

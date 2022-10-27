@@ -25,7 +25,7 @@ const Courses = () => {
               {courses.map((course) => (
                 <MyNavLink to={`course/${course["id"]}`} key={course["id"]}>
                   <Chip
-                    className="bg-blue-500 px-3 mb-3"
+                    className="bg-blue-500 px-3 mb-3 block"
                     color="blue"
                     value={course["title"]}
                   />
