@@ -70,7 +70,9 @@ export default function MyNavBar() {
           </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <UserPicOrLogin className="mr-5" />
+
+        <UserPicOrLogin />
+
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -80,10 +82,7 @@ export default function MyNavBar() {
           {openNav ? <FaCompress /> : <FaBars />}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
-        <UserPicOrLogin />
-        {navList}
-      </MobileNav>
+      <MobileNav open={openNav}>{navList}</MobileNav>
     </Navbar>
   );
 }

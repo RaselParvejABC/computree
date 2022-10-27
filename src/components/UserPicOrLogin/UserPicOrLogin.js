@@ -19,7 +19,7 @@ const UserPicOrLogin = () => {
   if (!user) {
     return (
       <MyNavLink to="/login">
-        <Button variant="outlined" color="blue" className="px-3 mr-4">
+        <Button variant="outlined" color="blue" className="px-3 mx-4">
           Log In
         </Button>
       </MyNavLink>
