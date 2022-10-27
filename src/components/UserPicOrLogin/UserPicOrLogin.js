@@ -1,7 +1,7 @@
 import React from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import { Button, Avatar, Tooltip } from "@material-tailwind/react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { SpinnerRoundFilled } from "spinners-react";
 import { FirebaseAuthContext } from "../../contexts/FirebaseAuthContextProvider/FirebaseAuthContextProvider";
@@ -37,15 +37,24 @@ const UserPicOrLogin = () => {
     );
   }
 
+  const { photoURL, displayName } = user;
+
+  console.log(photoURL);
+
   return (
-    <Button
-      onClick={logOut}
-      variant="outlined"
-      color="blue"
-      className="px-3 mx-4"
-    >
-      Sign Out
-    </Button>
+    <div className="ml-2">
+      <Tooltip content={displayName} className="bg-blue-900 text-white">
+        <Avatar size="xs" src={photoURL}></Avatar>
+      </Tooltip>
+      <Button
+        onClick={logOut}
+        variant="outlined"
+        color="blue"
+        className="px-3 mx-4"
+      >
+        Sign Out
+      </Button>
+    </div>
   );
 };
 

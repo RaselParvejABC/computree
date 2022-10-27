@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import {
   useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+  useSignInWithGithub,
   useAuthState,
 } from "react-firebase-hooks/auth";
 import * as EmailValidator from "email-validator";
@@ -13,8 +15,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [signInWithEmailAndPassword, , loading, firebaseError] =
-    useSignInWithEmailAndPassword(firebaseAuth);
+  const [
+    signInWithEmailAndPassword,
+    ,
+    passwordLoginLoading,
+    passwordLoginError,
+  ] = useSignInWithEmailAndPassword(firebaseAuth);
+
+  const [signInWithGoogle, , googleLoginLoading, googleLoginError] =
+    useSignInWithGoogle(firebaseAuth);
+  const [signInWithGithub, , githubLoginLoading, githubLoginError] =
+    useSignInWithGithub(firebaseAuth);
 
   const [currentUser, currentUserLoading, currentUserLoadingError] =
     useAuthState(firebaseAuth);
@@ -42,6 +53,18 @@ const Login = () => {
       return;
     }
     signInWithEmailAndPassword(email, password);
+  };
+
+  const handleGoogleSignIn = (event) => {
+    event.preventDefault();
+    setError(null);
+    signInWithGoogle();
+  };
+
+  const handleGithubSignIn = (event) => {
+    event.preventDefault();
+    setError(null);
+    signInWithGithub();
   };
 
   return (
@@ -102,13 +125,23 @@ const Login = () => {
             </div>
           </form>
 
-          {(error || firebaseError) && (
+          {(error ||
+            passwordLoginError ||
+            googleLoginError ||
+            githubLoginError) && (
             <div className="mt-4 text-center text-red-500">
-              {error || firebaseError.message}
+              {[
+                error,
+                passwordLoginError.message,
+                googleLoginError.message,
+                githubLoginError.message,
+              ].join("\n")}
             </div>
           )}
 
-          {loading && (
+          {(passwordLoginLoading ||
+            googleLoginLoading ||
+            githubLoginLoading) && (
             <div className="mt-4 text-center text-blue-500">
               Trying to Log In.
             </div>
@@ -128,6 +161,7 @@ const Login = () => {
           </div>
           <div className="my-6 space-y-2">
             <button
+              onClick={handleGoogleSignIn}
               aria-label="Login with Google"
               type="button"
               className="flex items-center justify-center w-full p-2 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
@@ -142,6 +176,7 @@ const Login = () => {
               <p>Login with Google</p>
             </button>
             <button
+              onClick={handleGithubSignIn}
               aria-label="Login with GitHub"
               className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-400 focus:ring-violet-400"
             >
