@@ -130,12 +130,23 @@ const Login = () => {
             googleLoginError ||
             githubLoginError) && (
             <div className="mt-4 text-center text-red-500">
-              {[
-                error,
-                passwordLoginError.message,
-                googleLoginError.message,
-                githubLoginError.message,
-              ].join("\n")}
+              {error && <p>{error}</p>}
+              {!error &&
+                passwordLoginError &&
+                passwordLoginError.code.endsWith("user-not-found") &&
+                "No Registered User with this Email"}
+              {!error &&
+                passwordLoginError &&
+                passwordLoginError.code.endsWith("wrong-password") &&
+                "Incorrect Password!"}
+
+              {!error && !passwordLoginError && googleLoginError && (
+                <p>{googleLoginError.message}</p>
+              )}
+              {!error &&
+                !passwordLoginError &&
+                !googleLoginError &&
+                githubLoginError && <p>{githubLoginError.message}</p>}
             </div>
           )}
 
